@@ -1,0 +1,170 @@
+#left-column {
+  margin-left: 100px;
+}
+#right-column {
+  margin-top: 120px;
+}
+.card-edit-btn {
+  height: 35px;
+  width: 35px;
+  border-radius: 5px;
+  float: right;
+  background: url("../images/Group48095769.png") no-repeat center;
+  background-size: cover;
+  border: none;
+}
+.inside-cards {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px #dddef0d7;
+  display: flex;
+  margin-top: 50px;
+  border-radius: 7px;
+  padding: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.inside-cards-2 {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px #dddef0d7;
+  margin-top: 50px;
+  border-radius: 7px;
+  padding: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.package-card-outer {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px #dddef0d7;
+  border-radius: 7px;
+}
+.package-card {
+  padding: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+  border-bottom: 2px solid #C7C7C7;
+}
+.package-card:last-child {
+    border-bottom: none;
+}
+.tags-div {
+  display: flex;
+  margin-left: -10px;
+}
+.app-div {
+  display: flex;
+}
+.app-title {
+  padding: 10px;
+}
+.app-content {
+  margin-left: 100px;
+  padding: 10px;
+}
+.tags-div div {
+  padding: 10px;
+  padding-right: 0px;
+}
+.inside-cards div {
+  margin-left: 80px;
+}
+.inside-cards .inside-name {
+  margin-left: 0;
+}
+.edit-btn-2 {
+  height: 20px;
+  width: 22px;
+  background: url("../images/Layer2.png") no-repeat center;
+  background-size: cover;
+  border: none;
+}
+.tags-outer-div {
+  display: flex;
+}
+.tags-outer-div button {
+  display: flex;
+}
+.add-btn {
+  height: 25px;
+  width: 50px;
+  border: none;
+  border-radius: 3px;
+  margin-left: 30px;
+  margin-top: 75px;
+  background: url("../images/Group48095766.png") no-repeat center;
+  background-size: cover;
+}
+.remove-btn {
+  height: 25px;
+  width: 80px;
+  border: none;
+  border-radius: 3px;
+  margin-left: 30px;
+  margin-top: 10px;
+  background: url("../images/Group48095767.png") no-repeat center;
+  background-size: cover;
+}
+.add-app-btn {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 50px;
+  width: 200px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 20px #fd720e;
+  background-color: #fd720e;
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+.app-title-div {
+  display: flex;
+}
+.app-edit-btn {
+  height: 30px;
+  width: 90px;
+  border-radius: 3px;
+  border: none;
+  background: url("../images/Group48095760.png") no-repeat center;
+  background-size: cover;
+}
+.app-delete-btn {
+  height: 30px;
+  width: 30px;
+  border-radius: 3px;
+  margin-left: 20px;
+  border: none;
+  background: url("../images/Group48095763.png") no-repeat center;
+  background-size: cover;
+}
+.outer-div {
+  display: flex;
+}
+.item-text {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #464646;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+.edit-btn {
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 3px;
+  margin-left: 30px;
+  margin-top: 10px;
+  background: url("../images/Group48095770.png") no-repeat center;
+  background-size: cover;
+}
+.delete-btn {
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 3px;
+  margin-left: 30px;
+  margin-top: 10px;
+  background: url("../images/Group48095771.png") no-repeat center;
+  background-size: cover;
+}
