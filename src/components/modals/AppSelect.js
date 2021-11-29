@@ -9,9 +9,12 @@ function AppSelect(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter" className="text-dark">
-          Edit App info :
+      <Modal.Header
+        closeButton
+        style={{ backgroundColor: "#6B649C", color: "white" }}
+      >
+        <Modal.Title id="contained-modal-title-vcenter">
+          Add App :
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

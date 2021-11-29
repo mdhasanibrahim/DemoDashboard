@@ -1,7 +1,8 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import Image from "react-bootstrap/Image";
 
-function CategoryNameEdit(props) {
+function ScriptEdit(props) {
   return (
     <Modal
       {...props}
@@ -13,18 +14,14 @@ function CategoryNameEdit(props) {
         closeButton
         style={{ backgroundColor: "#6B649C", color: "white" }}
       >
-        <Modal.Title id="contained-modal-title-vcenter" >
-          Edit Category Name :
+        <Modal.Title style={{ width: "100%" }}>
+          <h3>Edit Script :</h3>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>Select a Category Name :</p>
-        <select className="form-select mb-3" style={{ width: "50%" }}>
-          {props.data.category &&
-            props.data.category.map((categoryL) => (
-              <option value={categoryL.id}>{categoryL.categoryName}</option>
-            ))}
-        </select>
+        <textarea class="form-control" rows="8">
+          {props.data.itemConfig}
+        </textarea>
       </Modal.Body>
       <Modal.Footer>
         <button className="btn btn-outline-success" onClick={props.onHide}>
@@ -38,4 +35,4 @@ function CategoryNameEdit(props) {
   );
 }
 
-export default CategoryNameEdit;
+export default ScriptEdit;

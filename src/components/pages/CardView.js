@@ -10,11 +10,62 @@ import SubCategoryNameEdit from "../modals/SubCetagoryNameEdit";
 import ColorEdit from "../modals/ColorEdit";
 import AppEdit from "../modals/AppEdit";
 import AppSelect from "../modals/AppSelect";
+import TableView from "../modals/TableView";
+import ItemView from "../modals/ItemView";
+import ScriptEdit from "../modals/ScriptEdit";
+import { Table } from "@material-ui/core";
 
 function CardView() {
   let bucketLink = "https://photozenspaceone.sgp1.digitaloceanspaces.com/";
   let packageLink = "http://139.59.0.197/api/getPackagesById/";
   const params = useParams();
+
+  const [value, setValue] = useState({
+    appId: "",
+    appName: "",
+    contentT: "",
+    adT: "",
+    contentV: "",
+    socialT: "",
+    price: "",
+  });
+
+  const handleButton = (data) => {
+    setValue({
+      appId: data.appId,
+      appName: data.appName,
+      contentT: data.contentT,
+      adT: data.adT,
+      contentV: data.contentV,
+      socialT: data.socialT,
+      price: data.price,
+    });
+    setModalShowTableView(true);
+  };
+
+  const [itemValue, setItemValue] = useState({
+    itemUrl: "",
+    itemName: "",
+  });
+
+  const handleButton2 = (data) => {
+    setItemValue({
+      itemUrl: data.itemUrl,
+      itemName: data.itemName,
+    });
+    setModalShowItemView(true);
+  };
+
+ const [scriptValue, setScriptValue] = useState({
+   itemConfig: "",
+ });
+
+ const handleButton3 = (data) => {
+   setScriptValue({
+     itemConfig: data.itemConfig,
+   });
+   setModalShowScriptView(true);
+ };
 
   const [modalShow, setModalShow] = useState(false);
   const [modalShow2, setModalShow2] = useState(false);
@@ -22,6 +73,9 @@ function CardView() {
   const [modalShow4, setModalShow4] = useState(false);
   const [modalShow5, setModalShow5] = useState(false);
   const [modalShow6, setModalShow6] = useState(false);
+  const [modalShowTableView, setModalShowTableView] = useState(false);
+  const [modalShowItemView, setModalShowItemView] = useState(false);
+  const [modalShowScriptView, setModalShowScriptView] = useState(false);
 
   const [packageList, setPackageList] = useState([]);
   const [tagsList, setTagsList] = useState([]);
@@ -49,12 +103,15 @@ function CardView() {
 
   return (
     <div className="container" id="container-id">
-      <div className="row gy-3 m-3">
-        <div className="col-sm-12 col-md-12 col-lg-7" id="left-column">
-          <div className=" text-success">
-            {/* <h1>This is Title for Card {packageList.id}.</h1> */}
+      <div className="m-4 mt-5 outer-div">
+        <div className="left-div">
+          <div className="title-div">
+            <h1>
+              Name: <tab />
+              {packageList.packageName}
+            </h1>
           </div>
-          <div className="mt-5">
+          <div>
             <Card
               style={{ borderRadius: "5px", width: "330px", height: "350px" }}
               className="col-7 text-white"
@@ -75,163 +132,371 @@ function CardView() {
               </Card.ImgOverlay>
             </Card>
           </div>
-          <div className="inside-cards col-8">
-            <div className="inside-name">
-              <p>Package Name</p>
-              <p>Category Name</p>
-              <p>Sub-Category Name</p>
-              <p>Color</p>
-            </div>
-            <div>
-              <p>: {packageList.packageName}</p>
-              <p>
-                : {packageList.category && packageList.category.categoryName}
-              </p>
-              <p>
-                :{" "}
-                {packageList.sub_categories &&
-                  packageList.sub_categories.subCatName}
-              </p>
-              <p>: {packageList.colors && packageList.colors.colorName}</p>
-            </div>
-            <div className="btn-div-2">
-              <p>
-                <button
-                  className="edit-btn-2"
-                  onClick={() => setModalShow(true)}
-                ></button>
-              </p>
-              <p>
-                <button
-                  className="edit-btn-2"
-                  onClick={() => setModalShow2(true)}
-                ></button>
-              </p>
-              <p>
-                <button
-                  className="edit-btn-2"
-                  onClick={() => setModalShow3(true)}
-                ></button>
-              </p>
-              <p>
-                <button
-                  className="edit-btn-2"
-                  onClick={() => setModalShow4(true)}
-                ></button>
-              </p>
-            </div>
+        </div>
+        <div className="right-div">
+          <div className="col-3 m-auto">
+            <Card className="stat-card">
+              <Card.Title className="stat-card-title">Download</Card.Title>
+              <Card.Body>2500</Card.Body>
+            </Card>
+            <Card className="stat-card">
+              <Card.Title className="stat-card-title">Rating</Card.Title>
+              <Card.Body>3.5</Card.Body>
+            </Card>
           </div>
-          <div className="tags-outer-div">
-            <div className="inside-cards-2 col-8">
-              <h3>Tags</h3>
-              <div className="tags-div">
-                {tagsList.map((tags) => (
-                  <div>
-                    <Badge bg="info">{tags.text}</Badge>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <button className="add-btn"></button>
-              <button className="remove-btn"></button>
-            </div>
+          <div className="col-3 m-auto">
+            <Card className="stat-card">
+              <Card.Title className="stat-card-title">Total VIEW</Card.Title>
+              <Card.Body>2500</Card.Body>
+            </Card>
+            <Card className="stat-card">
+              <Card.Title className="stat-card-title">Featured</Card.Title>
+              <Card.Body>YES</Card.Body>
+            </Card>
           </div>
-          <div className="tags-outer-div">
-            <div className="inside-cards-2 col-8">
-              <h3>Country</h3>
-              <div className="tags-div">
-                {countryList.map((country) => (
-                  <div>{country.countryName}</div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <button className="add-btn"></button>
-              <button className="remove-btn"></button>
-            </div>
-          </div>
-          <div className="add-app-div">
-            <button className="add-app-btn" onClick={() => setModalShow5(true)}>
-              Add App
-            </button>
-          </div>
-          <div className="package-card-outer col-10">
-            {contentTypeList.map((contentType) => (
-              <div className="package-card col-12">
-                <div className="app-title-div">
-                  <div className="col-8">
-                    <h3>
-                      App{" "}
-                      {contentType.application &&
-                        contentType.application.appName}
-                    </h3>
-                  </div>
-                  <div className="col-2">
-                    <button
-                      className="app-edit-btn"
-                      onClick={() => setModalShow6(true)}
-                    ></button>
-                  </div>
-                  <div className="col-2">
-                    <button className="app-delete-btn"></button>
-                  </div>
-                </div>
-                <div className="app-div">
-                  <div className="app-title">
-                    <p>Content Type</p>
-                    <p>Add type</p>
-                    <p>Content Value</p>
-                    <p>Social Type</p>
-                    <p>Price Code</p>
-                  </div>
-                  <div className="app-content">
-                    <p>: {contentType.contentType}</p>
-                    <p>: {contentType.addType}</p>
-                    <p>: {contentType.contentValue}</p>
-                    <p>: {contentType.socialType}</p>
-                    <p>: {contentType.priceCode}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="col-3 m-auto">
+            <Card className="stat-card">
+              <Card.Title className="stat-card-title">SIZE</Card.Title>
+              <Card.Body>2500</Card.Body>
+            </Card>
+            <Card className="stat-card">
+              <Card.Title className="stat-card-title">Active</Card.Title>
+              <Card.Body>YES</Card.Body>
+            </Card>
           </div>
         </div>
-        <div className="col-sm-12 col-md-4 col-lg-2" id="right-column">
-          <div className="row gy-3 my-4 mt-5 pb-3 pl-3">
+      </div>
+      <div style={{ display: "flex", marginTop: "100px" }}>
+        <div className="package-info" style={{ width: "45%" }}>
+          <Card style={{ borderRadius: "10px", height: "300px" }}>
+            <Card.Title
+              style={{
+                textAlign: "center",
+                backgroundColor: "rgb(215, 215, 216)",
+                padding: "15px",
+                fontSize: "25px",
+                fontWeight: "600",
+                borderRadius: "10px",
+                backgroundColor: "#6B649C",
+                color: "white",
+              }}
+            >
+              Package Info
+            </Card.Title>
+            <Card.Body>
+              <Table>
+                <tr>
+                  <td style={{ width: "50%" }}>Package Name</td>
+                  <td>: {packageList.packageName}</td>
+                  <td>
+                    <button
+                      className="edit-btn-2"
+                      onClick={() => setModalShow(true)}
+                    ></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ width: "50%" }}>Category Name</td>
+                  <td>
+                    :{" "}
+                    {packageList.category && packageList.category.categoryName}
+                  </td>
+                  <td>
+                    <button
+                      className="edit-btn-2"
+                      onClick={() => setModalShow2(true)}
+                    ></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ width: "50%" }}>Sub-Category Name</td>
+                  <td>
+                    :{" "}
+                    {packageList.sub_categories &&
+                      packageList.sub_categories.subCatName}
+                  </td>
+                  <td>
+                    <button
+                      className="edit-btn-2"
+                      onClick={() => setModalShow3(true)}
+                    ></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ width: "50%" }}>Color</td>
+                  <td>
+                    : {packageList.colors && packageList.colors.colorName}
+                  </td>
+                  <td>
+                    <button
+                      className="edit-btn-2"
+                      onClick={() => setModalShow4(true)}
+                    ></button>
+                  </td>
+                </tr>
+              </Table>
+            </Card.Body>
+          </Card>
+        </div>
+        <div
+          className="package-info"
+          style={{ width: "45%", marginLeft: "10%" }}
+        >
+          <Card style={{ borderRadius: "10px", height: "300px" }}>
+            <Card.Title
+              style={{
+                textAlign: "center",
+                backgroundColor: "rgb(215, 215, 216)",
+                padding: "15px",
+                fontSize: "25px",
+                fontWeight: "600",
+                borderRadius: "10px",
+                backgroundColor: "#6B649C",
+                color: "white",
+              }}
+            >
+              Country List
+            </Card.Title>
+            <Card.Body style={{ paddingLeft: "3%", paddingRight: "3%" }}>
+              {countryList.map((country) => (
+                <Badge
+                  bg="info"
+                  style={{
+                    fontSize: "15px",
+                    marginRight: "10px",
+                    marginBottom: "10px",
+                    marginLeft: "10px",
+                  }}
+                >
+                  {country.countryName}
+                </Badge>
+              ))}
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
+      <Card
+        className="app-list-card"
+        style={{
+          marginTop: "100px",
+          marginBottom: "100px",
+          alignItems: "center",
+          textAlign: "center",
+          borderRadius: "10px",
+        }}
+      >
+        <Card.Title className="stat-card-title">
+          <h2>
+            TAG List
+            <span>
+              <button className="tag-edit-btn"></button>
+            </span>
+          </h2>
+        </Card.Title>
+        <Card.Body>
+          {tagsList.map((tags) => (
+            <Badge
+              bg="primary"
+              style={{
+                fontSize: "15px",
+                marginRight: "10px",
+                marginLeft: "10px",
+              }}
+            >
+              {tags.text}
+            </Badge>
+          ))}
+        </Card.Body>
+      </Card>
+      <Card
+        className="app-list-card"
+        style={{ borderRadius: "10px", marginBottom: "100px" }}
+      >
+        <Card.Title className="stat-card-title">
+          <h2>
+            App List
+            <span>
+              <button
+                className="add-app-btn"
+                onClick={() => setModalShow5(true)}
+              ></button>
+            </span>
+          </h2>
+        </Card.Title>
+        <Card.Body>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">App Name</th>
+                <th scope="col">Content Type</th>
+                <th scope="col">Ads Type</th>
+                <th scope="col">Content Value</th>
+                <th scope="col">Social Type</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contentTypeList.map((contentType) => (
+                <tr>
+                  <td scope="row" style={{ paddingTop: "20px" }}>
+                    {contentType.application && contentType.application.appId}
+                  </td>
+                  <td style={{ paddingTop: "20px" }}>
+                    {contentType.application && contentType.application.appName}
+                  </td>
+                  <td style={{ paddingTop: "20px" }}>
+                    {contentType.contentType == ""
+                      ? "NULL"
+                      : contentType.contentType}
+                  </td>
+                  <td style={{ paddingTop: "20px" }}>
+                    {contentType.addType == "" ? "NULL" : contentType.addType}
+                  </td>
+                  <td style={{ paddingTop: "20px" }}>
+                    {contentType.contentValue == ""
+                      ? "NULL"
+                      : contentType.contentValue}
+                  </td>
+                  <td style={{ paddingTop: "20px" }}>
+                    {contentType.socialType == ""
+                      ? "NULL"
+                      : contentType.socialType}
+                  </td>
+                  <td style={{ paddingTop: "20px" }}>
+                    {contentType.priceCode == ""
+                      ? "NULL"
+                      : contentType.priceCode}
+                  </td>
+                  <td>
+                    <button
+                      className="table-view-btn"
+                      onClick={() =>
+                        handleButton({
+                          appId:
+                            contentType.application &&
+                            contentType.application.appId,
+                          appName:
+                            contentType.application &&
+                            contentType.application.appName,
+                          contentT:
+                            contentType.contentType == ""
+                              ? "NULL"
+                              : contentType.contentType,
+                          adT:
+                            contentType.addType == ""
+                              ? "NULL"
+                              : contentType.addType,
+                          contentV:
+                            contentType.contentValue == ""
+                              ? "NULL"
+                              : contentType.contentValue,
+                          socialT:
+                            contentType.socialType == ""
+                              ? "NULL"
+                              : contentType.socialType,
+                          price:
+                            contentType.priceCode == ""
+                              ? "NULL"
+                              : contentType.priceCode,
+                        })
+                      }
+                    ></button>
+                    <button
+                      className="table-edit-btn"
+                      onClick={() => setModalShow6(true)}
+                    ></button>
+                    <button className="table-delete-btn"></button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Card.Body>
+      </Card>
+      <Card
+        className="app-list-card"
+        style={{ borderRadius: "10px", marginBottom: "100px" }}
+      >
+        <Card.Title className="stat-card-title">
+          {(packageList.items &&
+            packageList.items[0] &&
+            packageList.items[0].itemConfig) == "" ? (
+            <h2>
+              Item List
+              <span>
+                <button className="add-app-btn"></button>
+              </span>
+            </h2>
+          ) : (
+            <h2>
+              Script
+              <span>
+                <button
+                  className="script-edit-btn"
+                  onClick={() =>
+                    handleButton3({
+                      itemConfig:(packageList.items &&
+                        packageList.items[0] &&
+                        packageList.items[0].itemConfig)
+                        ,
+                    })
+                  }
+                ></button>
+              </span>
+            </h2>
+          )}
+        </Card.Title>
+        <Card.Body>
+          <div style={{ display: "flex" }}>
             {packageList.items &&
               packageList.items.map((packageItem) => (
-                <div className="outer-div">
-                  <div className="col-6 col-sm-6 col-md-12 col-lg-12">
+                <div style={{ margin: "20px", display: "flex" }}>
+                  <div>
                     {packageItem.itemUrl == "" ? (
-                      <taxtarea readonly="false" className="form-control">
+                      <taxtarea
+                        readonly="false"
+                        className="form-control"
+                        style={{ padding: "20px" }}
+                      >
                         {packageItem.itemConfig}
                       </taxtarea>
                     ) : (
                       <Card
-                        style={{ borderRadius: "5px" }}
-                        className="col-12 text-dark"
+                        style={{
+                          borderRadius: "5px",
+                          height: "200px",
+                          width: "200px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() =>
+                          handleButton2({
+                            itemUrl: bucketLink.concat(packageItem.itemUrl),
+                            itemName: packageItem.itemName,
+                          })
+                        }
                       >
                         <Card.Img
                           style={{ borderRadius: "5px" }}
                           src={bucketLink.concat(packageItem.itemUrl)}
                           alt="Card image"
                         />
-                        <Card.ImgOverlay />
+                        <Card.ImgOverlay>
+                          <Card.Title>
+                            <button className="item-delete-btn"></button>
+                          </Card.Title>
+                        </Card.ImgOverlay>
                       </Card>
                     )}
-
                     <h4 className=" item-text ">{packageItem.itemName}</h4>
-                  </div>
-                  <div>
-                    <button className="edit-btn"></button>
-                    <button className="delete-btn"></button>
                   </div>
                 </div>
               ))}
           </div>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
+
       <PackageNameEdit show={modalShow} onHide={() => setModalShow(false)} />
       <CategoryNameEdit
         data={editList}
@@ -248,6 +513,11 @@ function CardView() {
         show={modalShow4}
         onHide={() => setModalShow4(false)}
       />
+      <TableView
+        data={value}
+        show={modalShowTableView}
+        onHide={() => setModalShowTableView(false)}
+      />
       <AppSelect
         data={editList}
         show={modalShow5}
@@ -257,6 +527,16 @@ function CardView() {
         data={editList}
         show={modalShow6}
         onHide={() => setModalShow6(false)}
+      />
+      <ItemView
+        data={itemValue}
+        show={modalShowItemView}
+        onHide={() => setModalShowItemView(false)}
+      />
+      <ScriptEdit
+        data={scriptValue}
+        show={modalShowScriptView}
+        onHide={() => setModalShowScriptView(false)}
       />
     </div>
   );
